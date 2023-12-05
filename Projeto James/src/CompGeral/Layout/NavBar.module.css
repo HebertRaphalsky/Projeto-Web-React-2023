@@ -1,0 +1,32 @@
+.NavBar{
+
+    display: flex;
+    justify-content: space-between;
+    background-color: #222;
+    padding-left: 2em;
+}
+
+.lista{
+
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+}
+
+.item{
+
+    margin-right: 1em;
+
+}
+
+.item a{
+
+    color: #fff;
+    text-decoration: none;
+}
+
+.item a:hover{
+
+    color: #fb3;
+}

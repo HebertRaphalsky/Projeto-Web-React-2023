@@ -1,0 +1,230 @@
+/* Configuração Base */
+
+
+body {
+  margin: 0;
+ padding: 0;
+ font-family: sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Container Geral */
+
+
+.form-container {
+  background-color: #fff;
+  width: 1400px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #888888;
+  margin: 20px;
+  
+}
+
+.form-container h2 {
+  margin-top: 10px;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Tabela simplesmente */
+
+
+.table-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #888888;
+  margin: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+table#tabelaPessoas button {
+  width: 99%;
+ 
+  color: white; 
+  border: none;
+  padding: 5px 10px; 
+  cursor: pointer;
+}
+
+
+
+/* Botão excluir*/
+
+.excluir-btn {
+  background-color: #ff5757; 
+  color: #fff; 
+  padding: 8px 16px; 
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  
+}
+
+.excluir-btn:hover {
+  background-color: #ff3333; 
+}
+
+.editar-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.editar-btn:hover {
+  background-color: #45a049;
+}
+
+
+/* Espaçamento entre os inputs */
+
+.input-container {
+  margin-bottom: 16px; 
+}
+
+label {
+  
+  margin-bottom: 8px; 
+}
+
+/* Configuração geral Input;Select */
+
+input, select {
+  width: 50%;
+  padding: 8px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+}
+
+/* Configuração Especificas /*
+
+/*home */
+
+.home-container{
+
+  width: 100%;
+
+}
+
+/*Periodo & Desafio */
+
+.label-2{
+  padding: 12px 580px;
+  margin-bottom: 1px;
+}
+
+.label-3{
+  padding: 12px 575px;
+  margin-bottom: 1px;
+}
+
+.dropdown{
+
+  width: 100%;
+
+}
+
+.logo{
+  padding-left: 10px;
+  width: 90px;
+
+}
+
+.meio{
+
+  width: 50%;
+
+}
+
+/* Calendário */
+.label-calendario{
+
+text-align: center;
+}
+.calendarioContainer {
+  font-family: 'Arial', sans-serif;
+  width: 1400px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #888888;
+  margin: 20px;
+  height: auto;
+}
+
+.calendario {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.calendario th, .calendario td {
+  padding: 10px;
+  text-align: center;
+  padding: 30px; 
+
+  border: 1px solid #ddd;
+}
+
+.calendario th {
+  background-color: #f2f2f2;
+}
+
+.dias td {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.dias td:hover {
+  background-color: #ccc;
+}
+
+.icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}

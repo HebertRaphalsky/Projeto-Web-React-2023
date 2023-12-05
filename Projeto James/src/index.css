@@ -1,0 +1,17 @@
+*{
+
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+html,
+ body,
+  #root{
+    background-image: url("imagens/marca.jpg");
+    height: 100%;
+
+
+}
