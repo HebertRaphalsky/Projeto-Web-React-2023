@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function CadDesafio() {
   const [nomeDesafio, setNomeDesafio] = useState('');
-  const [selectedPeriodo, setSelectedPeriodo] = useState('');
-  const [selectedProfessor, setSelectedProfessor] = useState('');
+  const [periodoSelecionado, setperiodoSelecionado] = useState('');
+  const [ProfessorSelecionado, setProfessorSelecionado] = useState('');
   const [dataInicio, setDataInicio] = useState('');
   const [dataFim, setDataFim] = useState('');
   const [desafios, setDesafios] = useState([]);
@@ -38,21 +38,21 @@ function CadDesafio() {
 
   const adicionarDesafio = () => {
     const professorJaSelecionado = desafios.some(
-      (desafio) => desafio.professor === selectedProfessor
+      (desafio) => desafio.professor === ProfessorSelecionado
     );
 
     if (
       nomeDesafio.trim() !== '' &&
-      selectedPeriodo.trim() !== '' &&
-      selectedProfessor.trim() !== '' &&
+      periodoSelecionado.trim() !== '' &&
+      ProfessorSelecionado.trim() !== '' &&
       dataInicio.trim() !== '' &&
       dataFim.trim() !== '' &&
       !professorJaSelecionado
     ) {
       const novoDesafio = {
         nomeDesafio: nomeDesafio,
-        periodo: selectedPeriodo,
-        professor: selectedProfessor,
+        periodo: periodoSelecionado,
+        professor: ProfessorSelecionado,
         dataInicio: dataInicio,
         dataFim: dataFim,
       };
@@ -73,8 +73,8 @@ function CadDesafio() {
       }
 
       setNomeDesafio('');
-      setSelectedPeriodo('');
-      setSelectedProfessor('');
+      setperiodoSelecionado('');
+      setProfessorSelecionado('');
       setDataInicio('');
       setDataFim('');
     } else if (professorJaSelecionado) {
@@ -93,8 +93,8 @@ function CadDesafio() {
     const desafioToEdit = desafios[index];
     seteditarindex(index);
     setNomeDesafio(desafioToEdit.nomeDesafio);
-    setSelectedPeriodo(desafioToEdit.periodo);
-    setSelectedProfessor(desafioToEdit.professor);
+    setperiodoSelecionado(desafioToEdit.periodo);
+    setProfessorSelecionado(desafioToEdit.professor);
     setDataInicio(desafioToEdit.dataInicio);
     setDataFim(desafioToEdit.dataFim);
   };
@@ -110,8 +110,8 @@ function CadDesafio() {
         />
         <select 
           id="periodo" 
-          value={selectedPeriodo} 
-          onChange={(e) => setSelectedPeriodo(e.target.value)}
+          value={periodoSelecionado} 
+          onChange={(e) => setperiodoSelecionado(e.target.value)}
         >
           <option value="" disabled>
             Selecione um período
@@ -142,8 +142,8 @@ function CadDesafio() {
         />
         <select 
           id="professor"
-          value={selectedProfessor} 
-          onChange={(e) => setSelectedProfessor(e.target.value)}
+          value={ProfessorSelecionado} 
+          onChange={(e) => setProfessorSelecionado(e.target.value)}
         >
           <option value="" disabled>
             Selecione um professor

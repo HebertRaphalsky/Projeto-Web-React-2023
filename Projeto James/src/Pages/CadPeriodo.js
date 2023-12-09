@@ -7,9 +7,9 @@ function CadastroPeriodo() {
   const [dataFim, setDataFim] = useState('');
   const [turno, setTurno] = useState([]);
   const [periodos, setPeriodos] = useState([]);
-  const [isTurnoVisible, setIsTurnoVisible] = useState(false);
+  const [turnoVisivel, setturnoVisivel] = useState(false);
   const [cursos, setCursos] = useState([]);
-  const [selectedCurso, setSelectedCurso] = useState('');
+  const [CursoSelecionado, setCursoSelecionado] = useState('');
   const [editingIndex, setEditingIndex] = useState(null);
 
   useEffect(() => {
@@ -30,14 +30,14 @@ function CadastroPeriodo() {
       semestreAno.trim() !== '' &&
       dataInicio.trim() !== '' &&
       dataFim.trim() !== '' &&
-      selectedCurso.trim() !== '' &&
+      CursoSelecionado.trim() !== '' &&
       turno.length > 0
     ) {
       const novoPeriodo = {
         id: new Date().getTime(),
         numeroPeriodo: numeroPeriodo,
         semestreAno: semestreAno,
-        curso: selectedCurso,
+        curso: CursoSelecionado,
         dataInicio: dataInicio,
         dataFim: dataFim,
         turno: turno,
@@ -45,11 +45,11 @@ function CadastroPeriodo() {
 
       if (editingIndex !== null) {
 
-        const updatedPeriodos = periodos.map((periodo, index) =>
+        const atualizaPeriodos = periodos.map((periodo, index) =>
           index === editingIndex ? novoPeriodo : periodo
         );
-        setPeriodos(updatedPeriodos);
-        localStorage.setItem('periodos', JSON.stringify(updatedPeriodos));
+        setPeriodos(atualizaPeriodos);
+        localStorage.setItem('periodos', JSON.stringify(atualizaPeriodos));
         setEditingIndex(null);
       } else {
         setPeriodos([...periodos, novoPeriodo]);
@@ -57,16 +57,16 @@ function CadastroPeriodo() {
 
       setNumeroPeriodo('');
       setSemestreAno('');
-      setSelectedCurso('');
+      setCursoSelecionado('');
       setDataInicio('');
       setDataFim('');
       setTurno([]);
-      setIsTurnoVisible(false);
+      setturnoVisivel(false);
     }
   };
 
   const toggleTurnoVisibility = () => {
-    setIsTurnoVisible(!isTurnoVisible);
+    setturnoVisivel(!turnoVisivel);
   };
 
   const excluirPeriodo = (id) => {
@@ -80,11 +80,11 @@ function CadastroPeriodo() {
     setEditingIndex(index);
     setNumeroPeriodo(periodoToEdit.numeroPeriodo);
     setSemestreAno(periodoToEdit.semestreAno);
-    setSelectedCurso(periodoToEdit.curso);
+    setCursoSelecionado(periodoToEdit.curso);
     setDataInicio(periodoToEdit.dataInicio);
     setDataFim(periodoToEdit.dataFim);
     setTurno(periodoToEdit.turno);
-    setIsTurnoVisible(true);
+    setturnoVisivel(true);
   };
 
   return (
@@ -127,8 +127,8 @@ function CadastroPeriodo() {
         <select
           className='home-container'
           id="curso"
-          value={selectedCurso}
-          onChange={(e) => setSelectedCurso(e.target.value)}
+          value={CursoSelecionado}
+          onChange={(e) => setCursoSelecionado(e.target.value)}
         >
           <option value="" disabled>
             Selecione um curso
@@ -141,9 +141,9 @@ function CadastroPeriodo() {
         </select>
 
         <button onClick={toggleTurnoVisibility}>
-          {isTurnoVisible ? 'Esconder Turno' : 'Selecionar Turno'}
+          {turnoVisivel ? 'Esconder Turno' : 'Selecionar Turno'}
         </button>
-        {isTurnoVisible && (
+        {turnoVisivel && (
           <div>
             <select
               className="dropdown"

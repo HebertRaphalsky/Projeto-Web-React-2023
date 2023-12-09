@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 function Ensalamento() {
   const [ensalamentos, setEnsalamentos] = useState([]);
-  const [selectedProfessor, setSelectedProfessor] = useState('');
-  const [selectedPeriodo, setSelectedPeriodo] = useState('');
-  const [selectedCurso, setSelectedCurso] = useState('');
-  const [selectedSala, setSelectedSala] = useState('');
-  const [selectedDesafio, setSelectedDesafio] = useState('');
+  const [professorSelecionado, setprofessorSelecionado] = useState('');
+  const [periodoSelecionado, setperiodoSelecionado] = useState('');
+  const [cursoSelecionado, setcursoSelecionado] = useState('');
+  const [salaSelecionado, setsalaSelecionado] = useState('');
+  const [desafioSelecionado, setdesafioSelecionado] = useState('');
   const [horaInicial, setHoraInicial] = useState('');
   const [horaFinal, setHoraFinal] = useState('');
-  const [selectDia, setDiaDaSemana] = useState('');
+  const [selecionaDia, setDiaDaSemana] = useState('');
   const [professores, setProfessores] = useState([]);
   const [periodos, setPeriodos] = useState([]);
   const [desafios, setDesafios] = useState([]);
@@ -39,29 +39,28 @@ function Ensalamento() {
 
   const adicionarEnsalamento = () => {
     if (
-      selectedProfessor.trim() !== '' &&
-      selectedPeriodo.trim() !== '' &&
-      selectedCurso.trim() !== '' &&
-      selectedSala.trim() !== '' &&
-      selectedDesafio.trim() !== '' &&
+      professorSelecionado.trim() !== '' &&
+      periodoSelecionado.trim() !== '' &&
+      cursoSelecionado.trim() !== '' &&
+      salaSelecionado.trim() !== '' &&
+      desafioSelecionado.trim() !== '' &&
       horaInicial.trim() !== '' &&
       horaFinal.trim() !== '' &&
-      selectDia.trim() !== ''
+      selecionaDia.trim() !== ''
     ) {
       const novoEnsalamento = {
         id: editingIndex !== null ? ensalamentos[editingIndex].id : new Date().getTime(),
-        professor: selectedProfessor,
-        periodo: selectedPeriodo,
-        curso: selectedCurso,
-        sala: selectedSala,
-        desafio: selectedDesafio,
+        professor: professorSelecionado,
+        periodo: periodoSelecionado,
+        curso: cursoSelecionado,
+        sala: salaSelecionado,
+        desafio: desafioSelecionado,
         horario: `${horaInicial} - ${horaFinal}`,
-        dia: selectDia,
-        diaDaSemana: selectDia, // Adiciona a propriedade diaDaSemana
+        dia: selecionaDia,
+        diaDaSemana: selecionaDia, 
       };
 
       if (editingIndex !== null) {
-        // Editing existing ensalamento
         const updatedEnsalamentos = ensalamentos.map((ensalamento, index) =>
           index === editingIndex ? novoEnsalamento : ensalamento
         );
@@ -69,7 +68,6 @@ function Ensalamento() {
         localStorage.setItem('Ensalamentos', JSON.stringify(updatedEnsalamentos));
         setEditingIndex(null);
       } else {
-        // Adding new ensalamento
         setEnsalamentos((prevEnsalamentos) => {
           const newEnsalamentos = [...prevEnsalamentos, novoEnsalamento];
           localStorage.setItem('Ensalamentos', JSON.stringify(newEnsalamentos));
@@ -77,12 +75,11 @@ function Ensalamento() {
         });
       }
 
-      // Limpar os estados após adicionar/editar
-      setSelectedProfessor('');
-      setSelectedPeriodo('');
-      setSelectedCurso('');
-      setSelectedSala('');
-      setSelectedDesafio('');
+      setprofessorSelecionado('');
+      setperiodoSelecionado('');
+      setcursoSelecionado('');
+      setsalaSelecionado('');
+      setdesafioSelecionado('');
       setHoraInicial('');
       setHoraFinal('');
       setDiaDaSemana('');
@@ -98,11 +95,11 @@ function Ensalamento() {
   const editarEnsalamento = (index) => {
     const ensalamentoToEdit = ensalamentos[index];
     setEditingIndex(index);
-    setSelectedProfessor(ensalamentoToEdit.professor);
-    setSelectedPeriodo(ensalamentoToEdit.periodo);
-    setSelectedCurso(ensalamentoToEdit.curso);
-    setSelectedSala(ensalamentoToEdit.sala);
-    setSelectedDesafio(ensalamentoToEdit.desafio);
+    setprofessorSelecionado(ensalamentoToEdit.professor);
+    setperiodoSelecionado(ensalamentoToEdit.periodo);
+    setcursoSelecionado(ensalamentoToEdit.curso);
+    setsalaSelecionado(ensalamentoToEdit.sala);
+    setdesafioSelecionado(ensalamentoToEdit.desafio);
     const [horaInicio, horaFim] = ensalamentoToEdit.horario.split(' - ');
     setHoraInicial(horaInicio);
     setHoraFinal(horaFim);
@@ -116,8 +113,8 @@ function Ensalamento() {
         <select
           className='home-container'
           id="nomeSelectProfessor"
-          value={selectedProfessor}
-          onChange={(e) => setSelectedProfessor(e.target.value)}
+          value={professorSelecionado}
+          onChange={(e) => setprofessorSelecionado(e.target.value)}
         >
           <option value="" disabled>
             Selecione um professor
@@ -130,7 +127,7 @@ function Ensalamento() {
         </select>
 
         <h2>Cadastro de Período</h2>
-        <select className='home-container' id="periodo" value={selectedPeriodo} onChange={(e) => setSelectedPeriodo(e.target.value)}>
+        <select className='home-container' id="periodo" value={periodoSelecionado} onChange={(e) => setperiodoSelecionado(e.target.value)}>
           <option value="" disabled>
             Selecione um período
           </option>
@@ -142,7 +139,7 @@ function Ensalamento() {
         </select>
 
         <h2>Cadastro de Curso</h2>
-        <select className='home-container' id="curso" value={selectedCurso} onChange={(e) => setSelectedCurso(e.target.value)}>
+        <select className='home-container' id="curso" value={cursoSelecionado} onChange={(e) => setcursoSelecionado(e.target.value)}>
           <option value="" disabled>
             Selecione um curso
           </option>
@@ -154,7 +151,7 @@ function Ensalamento() {
         </select>
 
         <h2>Cadastro de Sala</h2>
-        <select className='home-container' id="sala" value={selectedSala} onChange={(e) => setSelectedSala(e.target.value)}>
+        <select className='home-container' id="sala" value={salaSelecionado} onChange={(e) => setsalaSelecionado(e.target.value)}>
           <option value="" disabled>
             Selecione uma sala
           </option>
@@ -166,7 +163,7 @@ function Ensalamento() {
         </select>
 
         <h2>Cadastro de Desafio</h2>
-        <select className='home-container' id="desafio" value={selectedDesafio} onChange={(e) => setSelectedDesafio(e.target.value)}>
+        <select className='home-container' id="desafio" value={desafioSelecionado} onChange={(e) => setdesafioSelecionado(e.target.value)}>
           <option value="" disabled>
             Selecione um desafio
           </option>
@@ -178,7 +175,7 @@ function Ensalamento() {
         </select>
 
         <h2>Cadastro dia</h2>
-        <select className='home-container' id="dia" value={selectDia} onChange={(e) => setDiaDaSemana(e.target.value)}>
+        <select className='home-container' id="dia" value={selecionaDia} onChange={(e) => setDiaDaSemana(e.target.value)}>
           <option value="" disabled>
             Selecione o dia
           </option>

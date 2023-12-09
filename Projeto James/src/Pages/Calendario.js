@@ -4,7 +4,6 @@ import '../CompGeral/Layout/forma.css';
 function Calendario() {
   const diasDoMes = Array.from({ length: 30 }, (_, index) => index + 1);
 
-  // Obter ensalamentos do armazenamento local
   const ensalamentos = JSON.parse(localStorage.getItem('Ensalamentos')) || [];
 
   return (
