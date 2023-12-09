@@ -7,7 +7,7 @@ const CadastroCurso = () => {
   const [nomeCoordenador, setNomeCoordenador] = useState('');
   const [cursos, setCursos] = useState([]);
   const [dataFim, setDataFim] = useState('');
-  const [editingId, setEditingId] = useState(null);
+  const [editarId, seteditarId] = useState(null);
 
   useEffect(() => {
     const storedCursos = JSON.parse(localStorage.getItem('cursos')) || [];
@@ -17,19 +17,19 @@ const CadastroCurso = () => {
   const adicionarCurso = () => {
     if (nome.trim() !== '' && dataInicio && nomeCoordenador.trim() !== '' && dataFim.trim() !== '') {
       const newCurso = {
-        id: editingId || new Date().getTime(),
+        id: editarId || new Date().getTime(),
         nome: nome,
         dataInicio: dataInicio,
         dataFim: dataFim,
         nomeCoordenador: nomeCoordenador,
       };
 
-      if (editingId) {
+      if (editarId) {
         // Editing existing course
-        const updatedCursos = cursos.map((curso) => (curso.id === editingId ? newCurso : curso));
+        const updatedCursos = cursos.map((curso) => (curso.id === editarId ? newCurso : curso));
         setCursos(updatedCursos);
         localStorage.setItem('cursos', JSON.stringify(updatedCursos));
-        setEditingId(null);
+        seteditarId(null);
       } else {
         // Adding new course
         setCursos((prevCursos) => [...prevCursos, newCurso]);
@@ -45,7 +45,7 @@ const CadastroCurso = () => {
 
   const editarCurso = (id) => {
     const cursoToEdit = cursos.find((curso) => curso.id === id);
-    setEditingId(id);
+    seteditarId(id);
     setNome(cursoToEdit.nome);
     setDataInicio(cursoToEdit.dataInicio);
     setDataFim(cursoToEdit.dataFim);
@@ -93,7 +93,7 @@ const CadastroCurso = () => {
             value={dataFim}
             onChange={(e) => setDataFim(e.target.value)}
           />
-          <button onClick={adicionarCurso}>{editingId ? 'Salvar Edição' : 'Adicionar'}</button>
+          <button onClick={adicionarCurso}>{editarId ? 'Salvar Edição' : 'Adicionar'}</button>
         </div>
       </div>
 
