@@ -25,13 +25,11 @@ const CadastroCurso = () => {
       };
 
       if (editarId) {
-        // Editing existing course
         const updatedCursos = cursos.map((curso) => (curso.id === editarId ? newCurso : curso));
         setCursos(updatedCursos);
         localStorage.setItem('cursos', JSON.stringify(updatedCursos));
         seteditarId(null);
       } else {
-        // Adding new course
         setCursos((prevCursos) => [...prevCursos, newCurso]);
         localStorage.setItem('cursos', JSON.stringify([...cursos, newCurso]));
       }

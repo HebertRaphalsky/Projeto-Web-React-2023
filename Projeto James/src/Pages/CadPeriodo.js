@@ -44,7 +44,7 @@ function CadastroPeriodo() {
       };
 
       if (editingIndex !== null) {
-        // Editing existing period
+
         const updatedPeriodos = periodos.map((periodo, index) =>
           index === editingIndex ? novoPeriodo : periodo
         );
@@ -52,7 +52,6 @@ function CadastroPeriodo() {
         localStorage.setItem('periodos', JSON.stringify(updatedPeriodos));
         setEditingIndex(null);
       } else {
-        // Adding new period
         setPeriodos([...periodos, novoPeriodo]);
       }
 
