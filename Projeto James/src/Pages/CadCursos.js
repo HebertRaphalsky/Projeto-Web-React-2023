@@ -80,6 +80,7 @@ const CadastroCurso = () => {
             <label className='label-2'>Data Final</label>
           </div>
           <input
+            
             type="date"
             id="dataInicio"
             value={dataInicio}
@@ -111,7 +112,7 @@ const CadastroCurso = () => {
           <tbody id="corpoTabela">
             {cursos.map((curso, index) => (
               <tr key={index}>
-                <td>{curso.id}</td>
+                <td>{index + 1}</td>
                 <td>{curso.nome}</td>
                 <td>{curso.nomeCoordenador}</td>
                 <td>{curso.dataInicio}</td>

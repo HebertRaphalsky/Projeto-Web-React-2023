@@ -10,7 +10,7 @@ function CadastroPeriodo() {
   const [turnoVisivel, setturnoVisivel] = useState(false);
   const [cursos, setCursos] = useState([]);
   const [CursoSelecionado, setCursoSelecionado] = useState('');
-  const [editingIndex, setEditingIndex] = useState(null);
+  const [editarindex, seteditarindex] = useState(null);
 
   useEffect(() => {
     const storedPeriodos = JSON.parse(localStorage.getItem('periodos')) || [];
@@ -43,14 +43,14 @@ function CadastroPeriodo() {
         turno: turno,
       };
 
-      if (editingIndex !== null) {
+      if (editarindex !== null) {
 
         const atualizaPeriodos = periodos.map((periodo, index) =>
-          index === editingIndex ? novoPeriodo : periodo
+          index === editarindex ? novoPeriodo : periodo
         );
         setPeriodos(atualizaPeriodos);
         localStorage.setItem('periodos', JSON.stringify(atualizaPeriodos));
-        setEditingIndex(null);
+        seteditarindex(null);
       } else {
         setPeriodos([...periodos, novoPeriodo]);
       }
@@ -77,7 +77,7 @@ function CadastroPeriodo() {
 
   const editarPeriodo = (index) => {
     const periodoToEdit = periodos[index];
-    setEditingIndex(index);
+    seteditarindex(index);
     setNumeroPeriodo(periodoToEdit.numeroPeriodo);
     setSemestreAno(periodoToEdit.semestreAno);
     setCursoSelecionado(periodoToEdit.curso);
@@ -90,7 +90,7 @@ function CadastroPeriodo() {
   return (
     <div>
       <div className="form-container">
-        <h2>{editingIndex !== null ? 'Editar Período' : 'Adicionar Período'}</h2>
+        <h2>{editarindex !== null ? 'Editar Período' : 'Adicionar Período'}</h2>
         <div>
           <input
             className='input'
@@ -161,7 +161,7 @@ function CadastroPeriodo() {
           </div>
         )}
         <button onClick={adicionarPeriodo}>
-          {editingIndex !== null ? 'Salvar Edição' : 'Adicionar'}
+          {editarindex !== null ? 'Salvar Edição' : 'Adicionar'}
         </button>
       </div>
 
@@ -183,7 +183,7 @@ function CadastroPeriodo() {
           <tbody>
             {periodos.map((periodo, index) => (
               <tr key={index}>
-                <td>{periodo.id}</td>
+                <td>{index + 1}</td>
                 <td>{periodo.numeroPeriodo}</td>
                 <td>{periodo.semestreAno}</td>
                 <td>{periodo.dataInicio}</td>

@@ -15,7 +15,7 @@ function Ensalamento() {
   const [desafios, setDesafios] = useState([]);
   const [salas, setSalas] = useState([]);
   const [cursos, setCursos] = useState([]);
-  const [editingIndex, setEditingIndex] = useState(null);
+  const [editarindex, seteditarindex] = useState(null);
 
   useEffect(() => {
     const storedEnsalamentos = JSON.parse(localStorage.getItem('Ensalamentos')) || [];
@@ -49,7 +49,7 @@ function Ensalamento() {
       selecionaDia.trim() !== ''
     ) {
       const novoEnsalamento = {
-        id: editingIndex !== null ? ensalamentos[editingIndex].id : new Date().getTime(),
+        id: editarindex !== null ? ensalamentos[editarindex].id : new Date().getTime(),
         professor: professorSelecionado,
         periodo: periodoSelecionado,
         curso: cursoSelecionado,
@@ -60,13 +60,13 @@ function Ensalamento() {
         diaDaSemana: selecionaDia, 
       };
 
-      if (editingIndex !== null) {
+      if (editarindex !== null) {
         const updatedEnsalamentos = ensalamentos.map((ensalamento, index) =>
-          index === editingIndex ? novoEnsalamento : ensalamento
+          index === editarindex ? novoEnsalamento : ensalamento
         );
         setEnsalamentos(updatedEnsalamentos);
         localStorage.setItem('Ensalamentos', JSON.stringify(updatedEnsalamentos));
-        setEditingIndex(null);
+        seteditarindex(null);
       } else {
         setEnsalamentos((prevEnsalamentos) => {
           const newEnsalamentos = [...prevEnsalamentos, novoEnsalamento];
@@ -94,7 +94,7 @@ function Ensalamento() {
 
   const editarEnsalamento = (index) => {
     const ensalamentoToEdit = ensalamentos[index];
-    setEditingIndex(index);
+    seteditarindex(index);
     setprofessorSelecionado(ensalamentoToEdit.professor);
     setperiodoSelecionado(ensalamentoToEdit.periodo);
     setcursoSelecionado(ensalamentoToEdit.curso);
@@ -201,7 +201,7 @@ function Ensalamento() {
         </div>
 
         <button onClick={adicionarEnsalamento}>
-          {editingIndex !== null ? 'Salvar Edição' : 'Adicionar'}
+          {editarindex !== null ? 'Salvar Edição' : 'Adicionar'}
         </button>
       </div>
 
@@ -222,9 +222,9 @@ function Ensalamento() {
             </tr>
           </thead>
           <tbody>
-            {ensalamentos.map((ensalamento) => (
-              <tr key={ensalamento.id}>
-                <td>{ensalamento.id}</td>
+            {ensalamentos.map((ensalamento, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
                 <td>{ensalamento.professor}</td>
                 <td>{ensalamento.periodo}</td>
                 <td>{ensalamento.curso}</td>
